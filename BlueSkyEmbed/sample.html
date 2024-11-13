@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+        
+        async function embed(url) {
+            const response = await fetch(`/bluesky?url=${encodeURI(url)}`);
+            if (response.ok) {
+                const data = await response.text();
+                var target = document.getElementById('output');
+                target.innerHTML = data;
+                scan(target);
+            }
+        }
+        
+    </script>
+    
+    <title>BlueSky Javascript sample</title>
+</head>
+<body>
+
+<p>BlueSky URL:</p>
+
+<input type="text" id="url" value="https://bsky.app/profile/timbale.bsky.social/post/3lastk4fo6s2k" />
+
+<button id="action" onclick="embed(document.getElementById('url').value)">Embed</button>
+
+<p>Output:</p>
+
+<div id="output"></div>
+
+</body>
+</html>
